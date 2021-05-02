@@ -6,7 +6,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // get all products
 router.get('/', (req, res) => {
   try {
-    const data = await Product.findAll({
+    const data = Product.findAll({
       include: [{ model: Category }, { model: Tag }],
     });
     res.status(200).json(data);
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 // get one product
 router.get('/:id', (req, res) => {
   try {
-    const data = await Product.findByPk(req.params.id, {
+    const data = Product.findByPk(req.params.id, {
       include: [{ model: Category }, { model: Tag }],
     });
     res.status(200).json(data);
@@ -104,7 +104,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   try {
-    const data = await Product.destroy({
+    const data = Product.destroy({
       where: {
         id: req.params.id,
       },
